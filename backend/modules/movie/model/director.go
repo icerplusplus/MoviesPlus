@@ -2,7 +2,7 @@ package model
 
 import "time"
 
-type Actors struct {
+type Director struct {
 	Id        uint64     `json:"id" gorm:"column:id;"`
 	Name      string     `json:"name" gorm:"column:name;"`
 	NameMd5   string     `json:"name_md5" gorm:"column:name_md5;"`
@@ -17,11 +17,11 @@ type Actors struct {
 	UpdatedAt *time.Time `json:"updated_at" gorm:"column:updated_at;"`
 }
 
-func (Actors) TableName() string { return "actors" }
+func (Director) TableName() string { return "directors" }
 
-type ActorMovie struct {
-	MovieId uint64 `json:"movie_id" gorm:"column:movie_id;"`
-	ActorId uint64 `json:"actor_id" gorm:"column:actor_id;"`
+type DirectorMovie struct {
+	MovieId    uint64 `json:"movie_id" gorm:"column:movie_id;"`
+	DirectorId uint64 `json:"director_id" gorm:"column:director_id;"`
 }
 
-func (ActorMovie) TableName() string { return "actor_movie" }
+func (DirectorMovie) TableName() string { return "director_movie" }

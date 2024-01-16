@@ -43,3 +43,12 @@ type Movie struct {
 }
 
 func (Movie) TableName() string { return "movies" }
+
+type MovieDetail struct {
+	Movie         Movie         `json:"movie"`
+	StreamServers StreamServers `json:"stream_servers"`
+	Actors        []Actor       `json:"actors"`
+	Directors     []Director    `json:"directors"`
+	Regions       []Region      `json:"regions"`
+	Categories    []Category    `json:"categories"`
+}

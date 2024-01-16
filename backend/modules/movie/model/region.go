@@ -2,8 +2,8 @@ package model
 
 import "time"
 
-type Categories struct {
-	Id        uint64     `json:"id" gorm:"column:id;primarykey"`
+type Region struct {
+	Id        uint64     `json:"id" gorm:"column:id;"`
 	Name      string     `json:"name" gorm:"column:name;"`
 	Slug      string     `json:"slug" gorm:"column:slug;"`
 	SeoTitle  string     `json:"seo_title" gorm:"column:seo_title;"`
@@ -15,11 +15,11 @@ type Categories struct {
 	UpdatedAt *time.Time `json:"updated_at" gorm:"column:updated_at;"`
 }
 
-func (Categories) TableName() string { return "categories" }
+func (Region) TableName() string { return "regions" }
 
-type CategoryMovie struct {
-	MovieId    uint64 `json:"movie_id" gorm:"column:movie_id;primarykey"`
-	CategoryId uint64 `json:"category_id" gorm:"column:category_id;"`
+type MovieRegion struct {
+	MovieId  uint64 `json:"movie_id" gorm:"column:movie_id;"`
+	RegionId uint64 `json:"region_id" gorm:"column:region_id;"`
 }
 
-func (CategoryMovie) TableName() string { return "category_movie" }
+func (MovieRegion) TableName() string { return "movie_region" }
