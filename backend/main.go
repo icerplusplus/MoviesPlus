@@ -4,9 +4,10 @@ import (
 	"backend/configs"
 	"backend/configs/database"
 	gin_movie "backend/modules/movie/transport/gin"
-	"fmt"
 	"os"
 	"time"
+
+	"github.com/gin-contrib/cors"
 
 	"github.com/gin-gonic/gin"
 )
@@ -19,9 +20,10 @@ func main() {
 	// connect to db
 	db := database.GetInstance()
 
-	fmt.Println(db)
-
 	r := gin.Default()
+
+	// cors handler
+	r.Use(cors.Default())
 
 	v1 := r.Group("v1")
 	{
@@ -29,6 +31,10 @@ func main() {
 		{
 			movies.GET("", gin_movie.GetListMovie(db.DB))
 			movies.GET("/:id", gin_movie.GetMovie(db.DB))
+		}
+		banners := v1.Group("banners")
+		{
+			banners.GET("", gin_movie.GetListBanner(db.DB))
 		}
 	}
 
